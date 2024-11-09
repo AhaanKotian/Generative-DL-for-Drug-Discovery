@@ -42,11 +42,11 @@ from sklearn.model_selection import train_test_split
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Hyperparameters
-embedding_dim = 64  # Dimension of embeddings for each token
-hidden_size = 512
-num_layers = 5
+embedding_dim = 256  # Dimension of embeddings for each token
+hidden_size = 2048
+num_layers = 12
 seq_length = 15
-num_heads = 8
+num_heads = 16
 batch_size = 128
 learning_rate = 0.001
 num_epochs = 40
@@ -145,11 +145,10 @@ class ChemicalDataset(Dataset):
 
     def __getitem__(self, idx):
         return torch.tensor(self.x_data[idx], dtype=torch.long), torch.tensor(self.y_data[idx], dtype=torch.long)
-
-# Transformer Model
-class TransformerModel(nn.Module):
+    
+class LargeTransformerModel(nn.Module):
     def __init__(self, vocab_size, embedding_dim, num_heads, hidden_dim, num_layers, max_seq_length):
-        super(TransformerModel, self).__init__()
+        super(LargeTransformerModel, self).__init__()
         self.embedding = nn.Embedding(vocab_size, embedding_dim)
         self.positional_encoding = self._generate_positional_encoding(max_seq_length, embedding_dim)
         
@@ -172,12 +171,14 @@ class TransformerModel(nn.Module):
         positional_encoding[:, 1::2] = np.cos(pos * div_term)
         return torch.tensor(positional_encoding, dtype=torch.float32)
 
+
+
 # Load and preprocess data
-DATA_PATH = "data/data.txt"
-NEW_DATA = "data/processed_data.txt"
-TRAIN_DATA = 'data/train_data.txt'
-TEST_DATA = 'data/test_data.txt'
-VAL_DATA = 'data/val_data.txt'
+DATA_PATH = "/home/somaiya-1/Desktop/Generative-DL-for-Drug-Discovery/data/data.txt"
+NEW_DATA = "/home/somaiya-1/Desktop/Generative-DL-for-Drug-Discovery/data/processed_data.txt"
+TRAIN_DATA = '/home/somaiya-1/Desktop/Generative-DL-for-Drug-Discovery/data/train_data.txt'
+TEST_DATA = '/home/somaiya-1/Desktop/Generative-DL-for-Drug-Discovery/data/test_data.txt'
+VAL_DATA = '/home/somaiya-1/Desktop/Generative-DL-for-Drug-Discovery/data/val_data.txt'
 
 # Filter Dataset Into Smaller Segments
 count=0
@@ -211,7 +212,8 @@ train_loader = DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=
 val_loader = DataLoader(dataset=val_dataset, batch_size=batch_size, shuffle=False)
 
 # Model, Loss, Optimizer
-model = TransformerModel(vocab_size, embedding_dim, num_heads, hidden_size, num_layers, max_seq_length=15).to(device)
+model = LargeTransformerModel(vocab_size, embedding_dim, num_heads, hidden_size, num_layers, max_seq_length=15).to(device)
+# model = TransformerModel(vocab_size, embedding_dim, num_heads, hidden_size, num_layers, max_seq_length=15).to(device)
 pytorch_total_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
 print(pytorch_total_params)
 print(model)
@@ -278,7 +280,7 @@ for epoch in range(num_epochs):
     if avg_val_loss < best_val_loss:
         best_val_loss = avg_val_loss
         early_stopping_counter = 0
-        torch.save(model.state_dict(), 'models/transformer.pth')
+        torch.save(model.state_dict(), '/home/somaiya-1/Desktop/Generative-DL-for-Drug-Discovery/models/largetransformer.pth')
     else:
         early_stopping_counter += 1
         if early_stopping_counter >= patience:

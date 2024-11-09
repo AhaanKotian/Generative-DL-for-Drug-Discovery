@@ -192,7 +192,7 @@ data = read(DATA_PATH)  # Load SMILES data from file
 smiles_tokenizer = SMILESTokenizer()
 smiles_tokenizer.fit(data)
 vocab_size = smiles_tokenizer.vocab_size()
-# vocab_size = 81
+vocab_size = 81
 
 print(vocab_size)
 # Split the data into train, test, and validation sets

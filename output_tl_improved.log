@@ -1,0 +1,55 @@
+Loading data...
+81
+9635473
+LSTMComplex(
+  (embedding): Embedding(81, 64)
+  (lstm): LSTM(64, 512, num_layers=5, batch_first=True)
+  (fc): Linear(in_features=512, out_features=81, bias=True)
+)
+/home/somaiya-1/Desktop/Generative-DL-for-Drug-Discovery/improved/tl_improved.py:214: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  base_model.load_state_dict(torch.load('models/improved_lstm_model.pth'))
+Transfered_ImprovedLSTM(
+  (embedding): Embedding(81, 64)
+  (lstm): LSTM(64, 512, num_layers=5, batch_first=True)
+  (fc): Linear(in_features=512, out_features=81, bias=True)
+)
+Epoch [1/40], Train Loss: 2.1442, Train Accuracy: 0.3794, Val Loss: 1.8812, Val Accuracy: 0.4342
+Epoch [2/40], Train Loss: 1.7523, Train Accuracy: 0.4688, Val Loss: 1.7477, Val Accuracy: 0.4794
+Epoch [3/40], Train Loss: 1.6356, Train Accuracy: 0.4979, Val Loss: 1.6717, Val Accuracy: 0.4996
+Epoch [4/40], Train Loss: 1.5586, Train Accuracy: 0.5177, Val Loss: 1.6266, Val Accuracy: 0.5128
+Epoch [5/40], Train Loss: 1.5026, Train Accuracy: 0.5334, Val Loss: 1.5845, Val Accuracy: 0.5221
+Epoch [6/40], Train Loss: 1.4601, Train Accuracy: 0.5458, Val Loss: 1.5523, Val Accuracy: 0.5281
+Epoch [7/40], Train Loss: 1.4238, Train Accuracy: 0.5554, Val Loss: 1.5313, Val Accuracy: 0.5315
+Epoch [8/40], Train Loss: 1.3954, Train Accuracy: 0.5650, Val Loss: 1.5169, Val Accuracy: 0.5398
+Epoch [9/40], Train Loss: 1.3709, Train Accuracy: 0.5699, Val Loss: 1.4996, Val Accuracy: 0.5489
+Epoch [10/40], Train Loss: 1.3501, Train Accuracy: 0.5784, Val Loss: 1.4870, Val Accuracy: 0.5492
+Epoch [11/40], Train Loss: 1.3342, Train Accuracy: 0.5825, Val Loss: 1.4807, Val Accuracy: 0.5468
+Epoch [12/40], Train Loss: 1.3168, Train Accuracy: 0.5874, Val Loss: 1.4703, Val Accuracy: 0.5567
+Epoch [13/40], Train Loss: 1.3024, Train Accuracy: 0.5916, Val Loss: 1.4632, Val Accuracy: 0.5583
+Epoch [14/40], Train Loss: 1.2904, Train Accuracy: 0.5953, Val Loss: 1.4584, Val Accuracy: 0.5597
+Epoch [15/40], Train Loss: 1.2794, Train Accuracy: 0.5996, Val Loss: 1.4519, Val Accuracy: 0.5617
+Epoch [16/40], Train Loss: 1.2685, Train Accuracy: 0.6031, Val Loss: 1.4487, Val Accuracy: 0.5584
+Epoch [17/40], Train Loss: 1.2599, Train Accuracy: 0.6050, Val Loss: 1.4436, Val Accuracy: 0.5622
+Epoch [18/40], Train Loss: 1.2520, Train Accuracy: 0.6069, Val Loss: 1.4406, Val Accuracy: 0.5652
+Epoch [19/40], Train Loss: 1.2438, Train Accuracy: 0.6095, Val Loss: 1.4342, Val Accuracy: 0.5656
+Epoch [20/40], Train Loss: 1.2365, Train Accuracy: 0.6126, Val Loss: 1.4354, Val Accuracy: 0.5651
+Epoch [21/40], Train Loss: 1.2301, Train Accuracy: 0.6148, Val Loss: 1.4338, Val Accuracy: 0.5675
+Epoch [22/40], Train Loss: 1.2241, Train Accuracy: 0.6155, Val Loss: 1.4300, Val Accuracy: 0.5639
+Epoch [23/40], Train Loss: 1.2174, Train Accuracy: 0.6180, Val Loss: 1.4318, Val Accuracy: 0.5671
+Epoch [24/40], Train Loss: 1.2127, Train Accuracy: 0.6181, Val Loss: 1.4277, Val Accuracy: 0.5665
+Epoch [25/40], Train Loss: 1.2084, Train Accuracy: 0.6218, Val Loss: 1.4256, Val Accuracy: 0.5716
+Epoch [26/40], Train Loss: 1.2020, Train Accuracy: 0.6230, Val Loss: 1.4241, Val Accuracy: 0.5677
+Epoch [27/40], Train Loss: 1.2006, Train Accuracy: 0.6227, Val Loss: 1.4234, Val Accuracy: 0.5714
+Epoch [28/40], Train Loss: 1.1940, Train Accuracy: 0.6263, Val Loss: 1.4298, Val Accuracy: 0.5717
+Epoch [29/40], Train Loss: 1.1899, Train Accuracy: 0.6263, Val Loss: 1.4263, Val Accuracy: 0.5640
+Epoch [30/40], Train Loss: 1.1867, Train Accuracy: 0.6266, Val Loss: 1.4222, Val Accuracy: 0.5712
+Epoch [31/40], Train Loss: 1.1831, Train Accuracy: 0.6297, Val Loss: 1.4223, Val Accuracy: 0.5749
+Epoch [32/40], Train Loss: 1.1792, Train Accuracy: 0.6295, Val Loss: 1.4195, Val Accuracy: 0.5743
+Epoch [33/40], Train Loss: 1.1762, Train Accuracy: 0.6298, Val Loss: 1.4197, Val Accuracy: 0.5745
+Epoch [34/40], Train Loss: 1.1735, Train Accuracy: 0.6307, Val Loss: 1.4252, Val Accuracy: 0.5739
+Epoch [35/40], Train Loss: 1.1706, Train Accuracy: 0.6321, Val Loss: 1.4222, Val Accuracy: 0.5769
+Epoch [36/40], Train Loss: 1.1674, Train Accuracy: 0.6325, Val Loss: 1.4172, Val Accuracy: 0.5727
+Epoch [37/40], Train Loss: 1.1657, Train Accuracy: 0.6337, Val Loss: 1.4190, Val Accuracy: 0.5783
+Epoch [38/40], Train Loss: 1.1626, Train Accuracy: 0.6357, Val Loss: 1.4180, Val Accuracy: 0.5727
+Epoch [39/40], Train Loss: 1.1597, Train Accuracy: 0.6369, Val Loss: 1.4237, Val Accuracy: 0.5738
+Epoch [40/40], Train Loss: 1.1587, Train Accuracy: 0.6351, Val Loss: 1.4211, Val Accuracy: 0.5779

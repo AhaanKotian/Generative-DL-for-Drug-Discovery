@@ -23,8 +23,8 @@ patience = 5
 seed = 42
 hidden_size_gru = 128
 hidden_size_lstm = 512
-num_gru_layers = 2
-num_lstm_layers = 2
+num_gru_layers = 3
+num_lstm_layers = 3
 
 def max_sequence(data):
 	file = open(data)
@@ -198,9 +198,9 @@ class HybridModel(nn.Module):
         x = self.embedding(x)  # Convert input indices to embeddings
         
         # Initialize hidden states for GRU and LSTM
-        h_gru = torch.zeros(2, x.size(0), 128).to(device)  # 2 layers of GRU with 128 units
-        h_lstm = (torch.zeros(2, x.size(0), 512).to(device),  # 2 layers of LSTM with 512 units
-                  torch.zeros(2, x.size(0), 512).to(device))
+        h_gru = torch.zeros(3, x.size(0), 128).to(device)  # 2 layers of GRU with 128 units
+        h_lstm = (torch.zeros(3, x.size(0), 512).to(device),  # 2 layers of LSTM with 512 units
+                  torch.zeros(3, x.size(0), 512).to(device))
         
         # GRU forward pass
         gru_out, _ = self.gru(x, h_gru)
@@ -214,7 +214,7 @@ class HybridModel(nn.Module):
 
 output_size = 34
 
-DATA_PATH = "data/alzheimersdata.txt"
+DATA_PATH = "/home/somaiya-1/Desktop/Generative-DL-for-Drug-Discovery/data/alzheimersdata.txt"
 print("Loading data...")
 data = read(DATA_PATH)  # Load SMILES data from file
 # data = data[:100]  # For testing, limit the data size
@@ -223,7 +223,7 @@ data = read(DATA_PATH)  # Load SMILES data from file
 smiles_tokenizer = SMILESTokenizer()
 smiles_tokenizer.fit(data)
 vocab_size = smiles_tokenizer.vocab_size()
-# vocab_size = 81
+
 
 print(vocab_size)
 # Split the data into train, test, and validation sets
@@ -242,7 +242,7 @@ base_model = HybridModel(vocab_size, embedding_dim, hidden_size_gru, hidden_size
 pytorch_total_params = sum(p.numel() for p in base_model.parameters() if p.requires_grad)
 print(pytorch_total_params)
 print(base_model)
-base_model.load_state_dict(torch.load('models/hybrid_model.pth'))
+base_model.load_state_dict(torch.load('/home/somaiya-1/Desktop/Generative-DL-for-Drug-Discovery/models/hybridmodel.pth'), strict = False)
 
 # Create the transfer learned model
 transfer_model = Transfered_HybridModel(base_model,vocab_size)
